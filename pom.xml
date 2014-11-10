@@ -25,9 +25,6 @@
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
 		<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/repository</altDeploymentRepository>
-
-		<!-- select classifier from http://repo1.maven.org/maven2/com/jcabi/mysql-dist/5.6.14/ -->
-		<mysql.classifier>mac-x86_64</mysql.classifier>
 	</properties>
 
 	<build>
