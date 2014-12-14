@@ -8,11 +8,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import lombok.Cleanup;
+import lombok.extern.java.Log;
 
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableMap;
 
+import static org.junit.Assert.*;
+
+import static org.hamcrest.CoreMatchers.*;
+
+@Log
 public class UserIT {
 
 	@Test
@@ -31,16 +37,13 @@ public class UserIT {
 		entityManager.persist(user);
 		entityManager.getTransaction().commit();
 
-		entityManager.getTransaction().begin();
-		System.out.println(entityManager.createQuery("from User u where u.name = 'name'", User.class).getSingleResult());
-		entityManager.getTransaction().commit();
-
 		// from slave
 		entityManager.getTransaction().begin();
+		// for EclipseLink
 		entityManager.unwrap(Connection.class).setReadOnly(true);
 		// for Hibernate
 		// entityManager.unwrap(SessionImplementor.class).connection().setReadOnly(true);
-		System.out.println(entityManager.createQuery("from User u where u.name = 'name'", User.class).getSingleResult());
+		assertThat(entityManager.createQuery("from User u where u.name = 'name'", User.class).getSingleResult(), is(user));
 		entityManager.getTransaction().commit();
 	}
 }

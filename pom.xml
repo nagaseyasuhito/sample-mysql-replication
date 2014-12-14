@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.nagaseyasuhito</groupId>
 	<artifactId>sample-mysql-replication</artifactId>
@@ -177,12 +176,13 @@
 						<configuration>
 							<url>jdbc:mysql://localhost:${mysql.slave.port}</url>
 							<sqlCommand>
-								change master to master_host='localhost',
-								master_port=${mysql.master.port}, master_user='root',
-								master_password='root', master_log_pos=262;
+								change master to
+									master_host='localhost',
+									master_port=${mysql.master.port},
+									master_user='root',
+									master_password='root';
 								start slave;
-								show
-								slave status;
+								show slave status;
 							</sqlCommand>
 						</configuration>
 					</execution>
@@ -234,7 +234,7 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.3.7.Final</version>
-		</dependency-->
+		</dependency -->
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -254,11 +254,16 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+			<version>2.5.2</version>
+		</dependency>
+		<!--dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>
 			<version>1.3.0.Final</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency -->
 
 		<dependency>
 			<groupId>junit</groupId>
